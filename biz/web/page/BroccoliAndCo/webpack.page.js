@@ -5,7 +5,9 @@ module.exports = {
     resolve: {
         alias: {
             '@router': `${path.resolve(__dirname, 'router')}`,
-            'ajax': `${path.resolve(__dirname, 'static/module.ajax.js')}`
+            '@mobx': `${path.resolve(__dirname, 'mobx')}`,
+            'ajax': `${path.resolve(__dirname, 'static/module/ajax.ts')}`,
+            'ajaxLoading': `${path.resolve(__dirname, 'mobx/ajaxLoading.ts')}`
         }
     },
     plugins: [

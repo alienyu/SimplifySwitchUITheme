@@ -26,8 +26,8 @@ export default class Home extends React.PureComponent<{}, { isShowForm: boolean 
                         <Row className="requestFrame" type="flex" justify="center">
                             <Col span={22}>
                                 <Row className="main">
-                                    <Row className="title"><Col offset={1}>Request an Invitation</Col></Row>
-                                    <Row className="text"><Col offset={1}>If you want to request an invitation,you can click the following button and fill the necessary fields to submit.</Col></Row>
+                                    <Row className="title">Request an Invitation</Row>
+                                    <Row className="text">If you want to request an invitation,you can click the following button and fill the necessary fields to submit.</Row>
                                 </Row>
                                 <Row className="btnLine">
                                     <a href="javascript:;" onClick={this.showForm.bind(this)}>I Want to Request</a>

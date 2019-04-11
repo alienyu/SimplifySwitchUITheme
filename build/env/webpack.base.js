@@ -45,7 +45,7 @@ var baseConf = {
             {
                 test: /\.json$/,
                 exclude: /node_modules/,
-                use: 'json-loader'
+                use: 'file-loader'
             },
             {
                 test: /\.js$/,

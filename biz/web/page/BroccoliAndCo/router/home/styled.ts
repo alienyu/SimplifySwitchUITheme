@@ -10,6 +10,7 @@ var WrapperHomeCmp = styled.div`
             background: #fff;
             border-radius: 6px;
             .title {
+                padding: 0 30px;
                 height: 50px;
                 line-height: 50px;
                 background: #FAFAFA;
@@ -17,6 +18,7 @@ var WrapperHomeCmp = styled.div`
                 color: #252525;
             }
             .text {
+                padding: 0 30px;
                 padding-top: 20px;
                 font-size: 14px;
                 color: #595959;

@@ -1,6 +1,9 @@
 import * as React from 'react'
 import { WrapperRequestFormCmp } from './styled'
 import { Row, Col, Button, Form, Input } from 'antd'
+import {observer} from 'mobx-react/index';
+import AjaxLoading from '@mobx/ajaxLoading';
+
 declare var Ajax: any;
 
 interface FormProps {
@@ -12,6 +15,7 @@ interface FormState {
     confirmDirty: Boolean
 }
 
+@observer
 class RequestForm extends React.PureComponent<FormProps, FormState> {
     constructor(props: FormProps) {
         super(props);
@@ -44,10 +48,18 @@ class RequestForm extends React.PureComponent<FormProps, FormState> {
 
     handleSubmit = (e: any) => {
         e.preventDefault();
-        this.props.form.validateFieldsAndScroll((err: any, values: object) => {
+        this.props.form.validateFieldsAndScroll((err: any, values: any) => {
             if (!err) {
-                console.log('Received values of form: ', values);
-                Ajax();
+                Ajax({
+                    url: "/prod/fake-auth",
+                    data: {
+                        name: values.name,
+                        email: values.email
+                    },
+                    callback(data: any) {
+                        console.log(1234)
+                    }
+                });
             }
         });
     }
@@ -82,7 +94,7 @@ class RequestForm extends React.PureComponent<FormProps, FormState> {
             <WrapperRequestFormCmp>
                 <Row type="flex" justify="center" align="middle" className="formFrame">
                     <Col span={20}>
-                        <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+                        <Form {...formItemLayout}>
                             <Form.Item
                                 label="Full name"
                             >
@@ -127,7 +139,7 @@ class RequestForm extends React.PureComponent<FormProps, FormState> {
                                 )}
                             </Form.Item>
                             <Form.Item {...tailFormItemLayout}>
-                                <Button type="primary" htmlType="submit">Submit</Button>
+                                <Button type="primary" onClick={this.handleSubmit}>Submit</Button>
                             </Form.Item>
                         </Form>
                     </Col>

@@ -9,7 +9,7 @@ export default class Header extends React.Component<{}, {}> {
     render() {
         return (
             <WrapperHeaderCmp>
-                Header
+                B & C
             </WrapperHeaderCmp>
         )
     }

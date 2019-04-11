@@ -4,7 +4,9 @@
       "baseUrl": "",
       "paths": {
         "@router/*": ["/biz/web/page/BroccoilAndCo/router/*"],
-        "ajax": ["/biz/web/page/BroccoilAndCo/static/module.ajax.js"]
+        "@mobx/*": ["/biz/web/page/BroccoilAndCo/mobx/*"],
+        "buildConf": ["/build/config/*"],
+        "ajax": ["/biz/web/page/BroccoilAndCo/static/module/ajax.ts"]
       },
       "sourceMap": true,
       "noImplicitAny": true,
