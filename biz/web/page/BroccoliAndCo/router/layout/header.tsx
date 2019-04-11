@@ -1,8 +1,8 @@
-import React from 'react'
+import * as React from 'react'
 import { WrapperHeaderCmp } from './styled'
 
-class Header extends React.Component {
-    constructor(props) {
+export default class Header extends React.Component<{}, {}> {
+    constructor(props: object) {
         super(props);
     }
 
@@ -14,5 +14,3 @@ class Header extends React.Component {
         )
     }
 }
-
-module.exports = Header;

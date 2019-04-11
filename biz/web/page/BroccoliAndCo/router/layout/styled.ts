@@ -2,10 +2,11 @@ import styled from 'styled-components'
 
 var WrapperHeaderCmp = styled.div`
     color: #fff;
-    font-size: 
+    font-size: 16px;
 `;
 
 var WrapperFooterCmp = styled.div`
+    font-size: 16px;
 `;
 
-module.exports = { WrapperHeaderCmp, WrapperFooterCmp }
+export { WrapperHeaderCmp, WrapperFooterCmp }

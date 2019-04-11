@@ -3,6 +3,7 @@ let webpack = require('webpack');
 let env = process.env.NODE_ENV;
 let deployContent = !env ? require("../config/devConfig.json")["deployContent"] : require("../config/releaseConfig.json")["deployContent"];
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CheckerPlugin } = require("awesome-typescript-loader");
 
 var baseConf = {
     output: {
@@ -11,11 +12,11 @@ var baseConf = {
     },
     plugins: [
         new MiniCssExtractPlugin('[name].css'), //单独使用link标签加载css并设置路径，相对于output配置中的publicePath
-
-        new webpack.HotModuleReplacementPlugin() //热加载
+        new webpack.HotModuleReplacementPlugin(), //热加载
+        new CheckerPlugin()
     ],
     resolve: {
-        extensions: ['.js', '.vue', '.jsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
         alias: {
             'common-css': process.cwd() + "/common/assets/css/common.less",
             'common-imgs': process.cwd() + "/common/assets/imgs"
@@ -23,6 +24,14 @@ var baseConf = {
     },
     module: {
         rules: [ //加载器，关于各个加载器的参数配置，可自行搜索之。
+            { 
+                test: /\.tsx?$/, 
+                exclude: /node_modules/,
+                use: [
+                    "babel-loader",
+                    "awesome-typescript-loader"
+                ]
+            },
             {
                 test: /\.jsx$/,
                 exclude: /node_modules/,
@@ -35,6 +44,7 @@ var baseConf = {
             },
             {
                 test: /\.json$/,
+                exclude: /node_modules/,
                 use: 'json-loader'
             },
             {

@@ -17,7 +17,7 @@ let envConf = merge(projectConf, {
     devServer: {
         contentBase: './',
         host: "localhost",
-        port: devConf.port || 7777, //默认8080
+        port: devConf.port || 6060, //默认8080
         inline: true, //可以监控js变化```
         hot: true, //热启动
         proxy: {
@@ -39,7 +39,7 @@ function runtime(conf) {
     var entryID = `${platform}/${pagePath}${htmlName}/${htmlName}`; // projectName/platform/pagePath/pageName
     var fileRoute = `${process.cwd()}/biz/${platform}/page/${pagePath}${htmlName}`; //biz/platform/page/pagePath/pageName
     //将公共模块与页面入口模块合并为一个模块
-    envConf.entry[entryID] = [`${fileRoute}/${htmlName}.js`].concat(getPageVendorConf({
+    envConf.entry[entryID] = [`${fileRoute}/${htmlName}.tsx`].concat(getPageVendorConf({
         platform,
         page
     })); 

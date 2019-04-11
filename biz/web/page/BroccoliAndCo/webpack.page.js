@@ -4,13 +4,13 @@ console.log("this is biz page")
 module.exports = {
     resolve: {
         alias: {
-            'components': `${path.resolve(__dirname, 'components')}`,
-            'routers': `${path.resolve(__dirname, 'routes')}`
+            '@router': `${path.resolve(__dirname, 'router')}`,
+            'ajax': `${path.resolve(__dirname, 'static/module.ajax.js')}`
         }
     },
     plugins: [
         new webpack.ProvidePlugin({
-
+            Ajax: 'ajax'
         })
     ]
 }

@@ -1,8 +1,8 @@
-import React from 'react'
+import * as React from 'react'
 import { WrapperFooterCmp } from './styled'
 
-class Footer extends React.Component {
-    constructor(props) {
+export default class Footer extends React.Component<{}, {}> {
+    constructor(props: object) {
         super(props);
     }
 
@@ -14,5 +14,3 @@ class Footer extends React.Component {
         )
     }
 }
-
-module.exports = Footer;

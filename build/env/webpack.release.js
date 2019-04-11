@@ -32,7 +32,7 @@ function runtime(conf) {
     var entryID = `${platform}/${pagePath}${htmlName}/${htmlName}`; // platform/pagePath/pageName
     var fileRoute = `${process.cwd()}/biz/${platform}/page/${pagePath}${htmlName}`; //biz/platform/page/pagePath/pageName
     //将公共模块与页面入口模块合并为一个模块
-    envConf.entry[entryID] = [`${fileRoute}/${htmlName}.js`].concat(getPageVendorConf({
+    envConf.entry[entryID] = [`${fileRoute}/${htmlName}.tsx`].concat(getPageVendorConf({
         platform,
         page
     }));     //biz/platform/page/pagePath/pageName.js
