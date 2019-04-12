@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { WrapperHeaderCmp } from './styled'
 
-export default class Header extends React.Component<{}, {}> {
+class Header extends React.Component<{}, {}> {
     constructor(props: object) {
         super(props);
     }
@@ -9,8 +9,10 @@ export default class Header extends React.Component<{}, {}> {
     render() {
         return (
             <WrapperHeaderCmp>
-                B & C
+                BROCCOLI & CO.
             </WrapperHeaderCmp>
         )
     }
 }
+
+module.exports = Header;

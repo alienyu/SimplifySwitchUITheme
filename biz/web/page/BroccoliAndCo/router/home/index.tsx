@@ -3,11 +3,12 @@ import { WrapperHomeCmp } from './styled'
 import { Row, Col, Modal } from 'antd'
 import RequestForm from './requestForm'
 
-export default class Home extends React.PureComponent<{}, { isShowForm: boolean }> {
+class Home extends React.PureComponent<{}, { isShowForm: boolean, isShowSuccessModal: boolean }> {
     constructor(props: object) {
         super(props);
         this.state = {
-            isShowForm: false
+            isShowForm: false,
+            isShowSuccessModal: false
         }
     }
     showForm() {
@@ -18,35 +19,80 @@ export default class Home extends React.PureComponent<{}, { isShowForm: boolean 
         this.setState({ isShowForm: false });
     }
 
+    showSuccessModal() {
+        this.setState({
+            isShowForm: false,
+            isShowSuccessModal: true
+        });
+    }
+
+    hideSuccessModal() {
+        this.setState({ isShowSuccessModal: false });
+    }
+
+    renderModalTitle() {
+        return (
+            <div className="title">
+                <div className="text">Request an invite</div>
+                <div className="line"></div>
+            </div>
+        )
+    }
+
+    renderSuccessModalTitle() {
+        return (
+            <div className="title">
+                <div className="text">All done!</div>
+                <div className="line"></div>
+            </div>
+        )
+    }
+
     render() {
         return (
             <WrapperHomeCmp>
                 <Row type="flex" justify="center" align="middle" className="pageFrame">
                     <Col span={18}>
-                        <Row className="requestFrame" type="flex" justify="center">
-                            <Col span={22}>
-                                <Row className="main">
-                                    <Row className="title">Request an Invitation</Row>
-                                    <Row className="text">If you want to request an invitation,you can click the following button and fill the necessary fields to submit.</Row>
-                                </Row>
-                                <Row className="btnLine">
-                                    <a href="javascript:;" onClick={this.showForm.bind(this)}>I Want to Request</a>
-                                </Row>
-                            </Col>
-                        </Row>
+                        <div className="title">A better way</div>
+                        <div className="title">to enjoy every day.</div>
+                        <div className="text">Be the first to know when we launch.</div>
+                        <a href="javascript:;" onClick={this.showForm.bind(this)}>Request an invite</a>
                     </Col>
                 </Row>
-                {this.state.isShowForm ? 
+                {this.state.isShowForm ?
                     <Modal
-                        title="Request Invitation"
+                        wrapClassName="formModal"
+                        title={this.renderModalTitle()}
                         visible={true}
+                        width={400}
+                        closable={false}
                         footer={null}
                         onCancel={this.hideForm.bind(this)}
                     >
-                        <RequestForm hideForm={this.hideForm.bind(this)} />
+                        <RequestForm showSuccessModal={this.showSuccessModal.bind(this)} />
+                    </Modal> : null
+                }
+                {this.state.isShowSuccessModal ?
+                    <Modal
+                        wrapClassName="successModal"
+                        title={this.renderSuccessModalTitle()}
+                        visible={true}
+                        width={400}
+                        closable={false}
+                        footer={null}
+                        onCancel={this.hideSuccessModal.bind(this)}
+                    >
+                        <Row className="content" type="flex" justify="center" align="middle">
+                            <Col span={20}>
+                                <div className="text">You will be one of the first to experience Broccoli & Co. when we launch.</div>
+                                <a href="javascript:;" className="okBtn" onClick={this.hideSuccessModal.bind(this)}>OK</a>
+                            </Col>
+                        </Row>
                     </Modal> : null
                 }
             </WrapperHomeCmp>
         )
     }
 }
+
+module.exports = Home;

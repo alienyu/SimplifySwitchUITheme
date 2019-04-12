@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { WrapperFooterCmp } from './styled'
 
-export default class Footer extends React.Component<{}, {}> {
+class Footer extends React.Component<{}, {}> {
     constructor(props: object) {
         super(props);
     }
@@ -9,8 +9,13 @@ export default class Footer extends React.Component<{}, {}> {
     render() {
         return (
             <WrapperFooterCmp>
-                Footer
+                <div className="content">
+                    <p>Made With &hearts; in Melbourne.</p>
+                    <p>&copy; 2016 Broccoli & Co. All rights reserved.</p>
+                </div>
             </WrapperFooterCmp>
         )
     }
 }
+
+module.exports = Footer;

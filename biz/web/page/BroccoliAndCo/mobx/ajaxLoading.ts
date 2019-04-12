@@ -11,4 +11,4 @@ class ajaxLoading {
 
 var loading = new ajaxLoading();
 
-export default loading;
+module.exports = loading;

@@ -2,17 +2,18 @@ import * as React from 'react'
 import { WrapperRequestFormCmp } from './styled'
 import { Row, Col, Button, Form, Input } from 'antd'
 import {observer} from 'mobx-react/index';
-import AjaxLoading from '@mobx/ajaxLoading';
+var AjaxLoading = require('@mobx/ajaxLoading');
 
 declare var Ajax: any;
 
 interface FormProps {
     form: any,
-    hideForm?: () => void
+    showSuccessModal?: () => void
 }
 
 interface FormState {
-    confirmDirty: Boolean
+    confirmDirty: Boolean,
+    errorMsg: String
 }
 
 @observer
@@ -20,7 +21,8 @@ class RequestForm extends React.PureComponent<FormProps, FormState> {
     constructor(props: FormProps) {
         super(props);
         this.state = {
-            confirmDirty: false
+            confirmDirty: false,
+            errorMsg: ""
         }
     }
 
@@ -47,6 +49,7 @@ class RequestForm extends React.PureComponent<FormProps, FormState> {
     }
 
     handleSubmit = (e: any) => {
+        let that = this;
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err: any, values: any) => {
             if (!err) {
@@ -56,8 +59,13 @@ class RequestForm extends React.PureComponent<FormProps, FormState> {
                         name: values.name,
                         email: values.email
                     },
+                    handlerErr: true,
                     callback(data: any) {
-                        console.log(1234)
+                        if(data.success) {
+                            that.props.showSuccessModal();
+                        } else {
+                            that.setState({errorMsg: data.data.errorMessage});
+                        }
                     }
                 });
             }
@@ -67,26 +75,9 @@ class RequestForm extends React.PureComponent<FormProps, FormState> {
     render() {
         const { getFieldDecorator } = this.props.form;
         const formItemLayout = {
-            labelCol: {
-                xs: { span: 24 },
-                sm: { span: 8 },
-            },
             wrapperCol: {
                 xs: { span: 24 },
-                sm: { span: 16 },
-            },
-        };
-
-        const tailFormItemLayout = {
-            wrapperCol: {
-                xs: {
-                    span: 24,
-                    offset: 0,
-                },
-                sm: {
-                    span: 16,
-                    offset: 8,
-                },
+                sm: { span: 24 },
             },
         };
 
@@ -95,9 +86,7 @@ class RequestForm extends React.PureComponent<FormProps, FormState> {
                 <Row type="flex" justify="center" align="middle" className="formFrame">
                     <Col span={20}>
                         <Form {...formItemLayout}>
-                            <Form.Item
-                                label="Full name"
-                            >
+                            <Form.Item>
                                 {getFieldDecorator('name', {
                                     rules: [{
                                         required: true, message: 'Please input your full name!',
@@ -105,43 +94,40 @@ class RequestForm extends React.PureComponent<FormProps, FormState> {
                                         min: 3, message: 'Full name needs to be at least 3 characters long'
                                     }],
                                 })(
-                                    <Input placeholder="input your full name" />
+                                    <Input placeholder="Full name" />
                                 )}
                             </Form.Item>
-                            <Form.Item
-                                label="Email"
-                            >
+                            <Form.Item>
                                 {getFieldDecorator('email', {
                                     rules: [{
-                                        type: 'email', message: 'The input is not valid E-mail!',
+                                        type: 'email', message: 'The input is not valid email!',
                                     }, {
-                                        required: true, message: 'Please input your E-mail!',
+                                        required: true, message: 'Please input your email!',
                                     }, {
                                         validator: this.validateToNextPassword,
                                     }],
                                 })(
-                                    <Input placeholder="input your email" />
+                                    <Input placeholder="Email" />
                                 )}
                             </Form.Item>
-                            <Form.Item
-                                label="Confirm Email"
-                            >
+                            <Form.Item>
                                 {getFieldDecorator('confirmEmail', {
                                     rules: [{
-                                        type: 'email', message: 'The input is not valid E-mail!',
+                                        type: 'email', message: 'The input is not valid email!',
                                     }, {
-                                        required: true, message: 'Please confirm your E-mail!',
+                                        required: true, message: 'Please confirm your email!',
                                     }, {
                                         validator: this.compareToFirstPassword
                                     }],
                                 })(
-                                    <Input placeholder="confirm your Email" onBlur={this.handleConfirmBlur} />
+                                    <Input placeholder="Confirm email" onBlur={this.handleConfirmBlur} />
                                 )}
                             </Form.Item>
-                            <Form.Item {...tailFormItemLayout}>
-                                <Button type="primary" onClick={this.handleSubmit}>Submit</Button>
+                            <Form.Item {...formItemLayout}>
+                                <Button type="primary" className="requestBtn" onClick={this.handleSubmit} disabled={AjaxLoading.status ? true : false}>{AjaxLoading.status ? 'Sending, please wait...' : 'Send'}</Button>
                             </Form.Item>
                         </Form>
+                        <Row className="errorMsg">{this.state.errorMsg}</Row>
                     </Col>
                 </Row>
             </WrapperRequestFormCmp>
