@@ -1,11 +1,23 @@
 {
   "presets": [
-    "env",
-    "react-native-stage-0/decorator-support"
+    "@babel/preset-env"
   ],
   "plugins": [
-    "transform-runtime",
-    "transform-object-assign",
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "corejs": 2
+      }
+    ],
+    "@babel/plugin-transform-object-assign",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-modules-commonjs",
     [
       "import",
       {
