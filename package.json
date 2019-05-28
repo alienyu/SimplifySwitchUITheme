@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --config build/webpack.config.js",
     "server-start": "node app.js",
-    "test": "jest",
+    "test": "jest --coverage",
     "local-build": "cross-env NODE_ENV=local webpack --config build/webpack.config.js && node build/deploy.js",
     "test-build": "cross-env NODE_ENV=test webpack --config build/webpack.config.js && node build/deploy.js",
     "project-build": "cross-env NODE_ENV=production webpack -p --config build/webpack.config.js && node build/deploy.js",

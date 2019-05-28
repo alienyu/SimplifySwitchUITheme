@@ -1,0 +1,2 @@
+{"/Users/alienyu/project/Airwallex/sum.js": {"path":"/Users/alienyu/project/Airwallex/sum.js","statementMap":{"0":{"start":{"line":2,"column":4},"end":{"line":2,"column":17}},"1":{"start":{"line":4,"column":2},"end":{"line":4,"column":23}}},"fnMap":{"0":{"name":"sum","decl":{"start":{"line":1,"column":9},"end":{"line":1,"column":12}},"loc":{"start":{"line":1,"column":19},"end":{"line":3,"column":3}},"line":1}},"branchMap":{},"s":{"0":2,"1":1},"f":{"0":2},"b":{},"_coverageSchema":"43e27e138ebf9cfc5966b082cf9a028302ed4184","hash":"f4e211afb32d4141013138e83ed23129acf18ecc"}
+}
