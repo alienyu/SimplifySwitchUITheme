@@ -1,4 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components'
+import { any } from 'prop-types';
+
+type Props = any;
 
 var WrapperHomeCmp = styled.div`
     height: 100%;
@@ -9,6 +12,7 @@ var WrapperHomeCmp = styled.div`
             font-size: 40px;
             font-weight: bold;
             word-spacing: 20px;
+            color:${(props: Props) => (props.textColor)};
         }
         .text {
             font-size: 16px;
@@ -19,7 +23,7 @@ var WrapperHomeCmp = styled.div`
             display: inline-block;
             height: 40px;
             line-height: 40px;
-            background: #1890ff;
+            background: ${(props: Props) => (props.buttonColor)};
             color: #fff;
             font-size: 14px;
             border-radius: 5px;
@@ -28,7 +32,6 @@ var WrapperHomeCmp = styled.div`
         }
     }
 `;
-
 var WrapperRequestFormCmp = styled.div`
     .requestBtn {
         width: 100%;

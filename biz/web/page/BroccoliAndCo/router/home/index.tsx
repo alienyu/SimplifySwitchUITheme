@@ -1,9 +1,12 @@
 import * as React from 'react'
 import { WrapperHomeCmp } from './styled'
 import { Row, Col, Modal } from 'antd'
+import {observer} from 'mobx-react/index';
 import RequestForm from './requestForm'
+var customTheme = require('@mobx/mulTheme');
 
-class Home extends React.PureComponent<{}, { isShowForm: boolean, isShowSuccessModal: boolean }> {
+@observer
+class Home extends React.Component<{}, { isShowForm: boolean, isShowSuccessModal: boolean }> {
     constructor(props: object) {
         super(props);
         this.state = {
@@ -50,7 +53,7 @@ class Home extends React.PureComponent<{}, { isShowForm: boolean, isShowSuccessM
 
     render() {
         return (
-            <WrapperHomeCmp>
+            <WrapperHomeCmp {...customTheme.currentTheme}>
                 <Row type="flex" justify="center" align="middle" className="pageFrame">
                     <Col span={18}>
                         <div className="title">A better way</div>

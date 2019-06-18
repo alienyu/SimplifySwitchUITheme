@@ -14,7 +14,8 @@
       "target": "es5",
       "jsx": "react",
       "skipLibCheck": true,
-      "experimentalDecorators": true
+      "experimentalDecorators": true,
+      "allowJs": true 
     },
     "include": [
       "./biz/**/*"

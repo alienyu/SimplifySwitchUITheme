@@ -3,6 +3,7 @@ import { WrapperRequestFormCmp } from './styled'
 import { Row, Col, Button, Form, Input } from 'antd'
 import {observer} from 'mobx-react/index';
 var AjaxLoading = require('@mobx/ajaxLoading');
+var customTheme = require('@mobx/mulTheme');
 
 declare var Ajax: any;
 
@@ -17,7 +18,7 @@ interface FormState {
 }
 
 @observer
-class RequestForm extends React.PureComponent<FormProps, FormState> {
+class RequestForm extends React.Component<FormProps, FormState> {
     constructor(props: FormProps) {
         super(props);
         this.state = {
@@ -80,9 +81,8 @@ class RequestForm extends React.PureComponent<FormProps, FormState> {
                 sm: { span: 24 },
             },
         };
-
         return (
-            <WrapperRequestFormCmp>
+            <WrapperRequestFormCmp {...customTheme.currentTheme}>
                 <Row type="flex" justify="center" align="middle" className="formFrame">
                     <Col span={20}>
                         <Form {...formItemLayout}>
@@ -135,5 +135,5 @@ class RequestForm extends React.PureComponent<FormProps, FormState> {
     }
 }
 
-const WrapperRequestForm = Form.create()(RequestForm);
+const WrapperRequestForm = Form.create<FormProps>()(RequestForm);
 export default WrapperRequestForm
