@@ -1,19 +1,32 @@
 import * as React from 'react'
+import { withRouter } from 'react-router-dom';
 import { WrapperHomeCmp } from './styled'
 import { Row, Col, Modal } from 'antd'
 import {observer} from 'mobx-react/index';
+import * as _ from 'lodash';
 import RequestForm from './requestForm'
 var customTheme = require('@mobx/mulTheme');
 
 @observer
-class Home extends React.Component<{}, { isShowForm: boolean, isShowSuccessModal: boolean }> {
-    constructor(props: object) {
+class Home extends React.Component<{location: any}, { isShowForm: boolean, isShowSuccessModal: boolean }> {
+    constructor(props: any) {
         super(props);
         this.state = {
             isShowForm: false,
             isShowSuccessModal: false
         }
     }
+    componentDidMount() {
+        const params  =  this.props.location.search.split("?");
+        let formattedParams = params.length >1 ? _.chain(params[1])
+        .split("&")
+        .map(_.ary(_.partial(_.split,_,"="),1))
+        .fromPairs()
+        .value() : {};
+        let defaultTheme:string = _.get(formattedParams, 'pl', 'default');
+        customTheme.changeTheme(defaultTheme);
+    }
+
     showForm() {
         this.setState({ isShowForm: true });
     }
@@ -98,4 +111,4 @@ class Home extends React.Component<{}, { isShowForm: boolean, isShowSuccessModal
     }
 }
 
-module.exports = Home;
+module.exports = withRouter(Home);
