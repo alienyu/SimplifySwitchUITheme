@@ -2,13 +2,17 @@ import * as React from 'react'
 import { withRouter } from 'react-router-dom';
 import { WrapperHomeCmp } from './styled'
 import { Row, Col, Modal } from 'antd'
-import {observer} from 'mobx-react/index';
+import {observer, inject} from 'mobx-react/index';
 import * as _ from 'lodash';
 import RequestForm from './requestForm'
-var customTheme = require('@mobx/mulTheme');
 
+type Props = {
+    location: any,
+    customizeThemeStore: any
+}
+@inject('customizeThemeStore')
 @observer
-class Home extends React.Component<{location: any}, { isShowForm: boolean, isShowSuccessModal: boolean }> {
+class Home extends React.Component<Props, { isShowForm: boolean, isShowSuccessModal: boolean }> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -24,7 +28,7 @@ class Home extends React.Component<{location: any}, { isShowForm: boolean, isSho
         .fromPairs()
         .value() : {};
         let defaultTheme:string = _.get(formattedParams, 'pl', 'default');
-        customTheme.changeTheme(defaultTheme);
+        this.props.customizeThemeStore.changeThemeKey(defaultTheme);
     }
 
     showForm() {
@@ -66,7 +70,7 @@ class Home extends React.Component<{location: any}, { isShowForm: boolean, isSho
 
     render() {
         return (
-            <WrapperHomeCmp {...customTheme.currentTheme}>
+            <WrapperHomeCmp {...this.props.customizeThemeStore.currentTheme}>
                 <Row type="flex" justify="center" align="middle" className="pageFrame">
                     <Col span={18}>
                         <div className="title">A better way</div>

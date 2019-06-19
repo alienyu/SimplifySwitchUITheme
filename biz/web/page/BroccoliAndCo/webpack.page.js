@@ -6,13 +6,13 @@ module.exports = {
         alias: {
             '@router': `${path.resolve(__dirname, 'router')}`,
             '@mobx': `${path.resolve(__dirname, 'mobx')}`,
-            'ajax': `${path.resolve(__dirname, 'static/module/ajax.ts')}`,
+            'ajax': `${path.resolve(__dirname, 'static/module/ajax.js')}`,
             'ajaxLoading': `${path.resolve(__dirname, 'mobx/ajaxLoading.ts')}`
         }
     },
     plugins: [
         new webpack.ProvidePlugin({
-            Ajax: 'ajax'
+            Ajax: ['ajax', 'default']
         })
     ]
 }

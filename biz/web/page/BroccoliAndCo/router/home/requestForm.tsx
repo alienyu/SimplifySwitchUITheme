@@ -1,15 +1,14 @@
 import * as React from 'react'
 import { WrapperRequestFormCmp } from './styled'
 import { Row, Col, Button, Form, Input } from 'antd'
-import {observer} from 'mobx-react/index';
-var AjaxLoading = require('@mobx/ajaxLoading');
-var customTheme = require('@mobx/mulTheme');
+import {observer, inject} from 'mobx-react/index';
 
 declare var Ajax: any;
 
 interface FormProps {
+    ajaxLoadingStore?: any,
     form: any,
-    showSuccessModal?: () => void
+    showSuccessModal: () => void,
 }
 
 interface FormState {
@@ -17,6 +16,7 @@ interface FormState {
     errorMsg: String
 }
 
+@inject('ajaxLoadingStore')
 @observer
 class RequestForm extends React.Component<FormProps, FormState> {
     constructor(props: FormProps) {
@@ -81,8 +81,9 @@ class RequestForm extends React.Component<FormProps, FormState> {
                 sm: { span: 24 },
             },
         };
+        const { ajaxLoadingStore } = this.props;
         return (
-            <WrapperRequestFormCmp {...customTheme.currentTheme}>
+            <WrapperRequestFormCmp>
                 <Row type="flex" justify="center" align="middle" className="formFrame">
                     <Col span={20}>
                         <Form {...formItemLayout}>
@@ -124,7 +125,7 @@ class RequestForm extends React.Component<FormProps, FormState> {
                                 )}
                             </Form.Item>
                             <Form.Item {...formItemLayout}>
-                                <Button type="primary" className="requestBtn" onClick={this.handleSubmit} disabled={AjaxLoading.status ? true : false}>{AjaxLoading.status ? 'Sending, please wait...' : 'Send'}</Button>
+                                <Button type="primary" className="requestBtn" onClick={this.handleSubmit} disabled={ajaxLoadingStore.status ? true : false}>{ajaxLoadingStore.status ? 'Sending, please wait...' : 'Send'}</Button>
                             </Form.Item>
                         </Form>
                         <Row className="errorMsg">{this.state.errorMsg}</Row>

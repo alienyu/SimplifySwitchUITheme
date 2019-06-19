@@ -1,14 +1,10 @@
 import * as React from 'react';
 import { observable, action } from 'mobx';
 
-class ajaxLoading {
+export default class ajaxLoadingStore {
     @observable status = false;
 
     @action changeStatus(val: any): void {
         this.status = val;
     }
 }
-
-var loading = new ajaxLoading();
-
-module.exports = loading;
