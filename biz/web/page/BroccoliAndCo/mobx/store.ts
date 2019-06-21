@@ -9,4 +9,4 @@ const stores = {
     customizeThemeStore
 }
 
-export default stores;
+module.exports = stores;

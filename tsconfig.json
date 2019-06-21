@@ -3,10 +3,10 @@
       "outDir": "./dist/",
       "baseUrl": "",
       "paths": {
-        "@router/*": ["/biz/web/page/BroccoilAndCo/router/*"],
-        "@mobx/*": ["/biz/web/page/BroccoilAndCo/mobx/*"],
-        "buildConf": ["/build/config/*"],
-        "ajax": ["/biz/web/page/BroccoilAndCo/static/module/ajax.js"]
+        "@router/*": ["/biz/web/page/BroccoliAndCo/router/*"],
+        "@mobx/*": ["/biz/web/page/BroccoliAndCo/mobx/*"],
+        "buildConf/*": ["/build/config/*"],
+        "ajax": ["/biz/web/page/BroccoliAndCo/static/module/ajax.ts"]
       },
       "sourceMap": true,
       "noImplicitAny": true,
