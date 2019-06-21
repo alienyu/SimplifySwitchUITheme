@@ -1,13 +1,11 @@
 import * as React from 'react'
 import { HashRouter, Route } from 'react-router-dom';
-import { observer } from 'mobx-react/index';
 import { Layout } from 'antd';
 const { Header, Footer, Content } = Layout;
 var AppHeader = require('@router/layout/header')
 var AppFooter = require('@router/layout/footer')
 var Home = require('@router/home/index')
 
-@observer
 class Index extends React.Component<{}, {}> {
     render() {
         return (

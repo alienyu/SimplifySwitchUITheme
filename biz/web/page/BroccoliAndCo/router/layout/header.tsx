@@ -2,7 +2,6 @@ import * as React from 'react'
 import { observer, inject } from 'mobx-react/index';
 import { WrapperHeaderCmp } from './styled'
 import { Button, Row, Col } from 'antd';
-import customizeThemeStore from '../../mobx/customizeThemeStore';
 
 type Props = {
     customizeThemeStore: any
