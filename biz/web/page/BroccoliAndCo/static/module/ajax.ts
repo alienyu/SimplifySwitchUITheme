@@ -2,7 +2,6 @@ import * as React from 'react'
 import { message } from 'antd';
 import Axios from 'axios';
 var { ajaxLoadingStore } = require('@mobx/store')
-// import { ajaxLoadingStore } from '@mobx/store';
 
 class Ajax {
     ajax(ops: any): any {

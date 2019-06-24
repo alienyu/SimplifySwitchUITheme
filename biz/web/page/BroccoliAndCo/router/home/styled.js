@@ -1,8 +1,7 @@
-import styled, { createGlobalStyle } from 'styled-components'
-import { any } from 'prop-types';
+import styled from 'styled-components'
+import { textColor, buttonColor } from './customizeStyle';
 
-type Props = any;
-
+// type Props = any;
 var WrapperHomeCmp = styled.div`
     height: 100%;
     .pageFrame {
@@ -12,7 +11,7 @@ var WrapperHomeCmp = styled.div`
             font-size: 40px;
             font-weight: bold;
             word-spacing: 20px;
-            color:${(props: Props) => (props.textColor)};
+            color:${textColor};
         }
         .text {
             font-size: 16px;
@@ -23,7 +22,7 @@ var WrapperHomeCmp = styled.div`
             display: inline-block;
             height: 40px;
             line-height: 40px;
-            background: ${(props: Props) => (props.buttonColor)};
+            background: ${buttonColor};
             color: #fff;
             font-size: 14px;
             border-radius: 5px;
@@ -32,10 +31,12 @@ var WrapperHomeCmp = styled.div`
         }
     }
 `;
-var WrapperRequestFormCmp = styled.div`
+
+var WrapperRequestFormCmp = styled('div')`
     .requestBtn {
         width: 100%;
         margin-top: 10px;
+        background: ${buttonColor};
     }
     .errorMsg {
         text-align: center;

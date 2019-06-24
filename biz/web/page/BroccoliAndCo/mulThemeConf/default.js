@@ -1,4 +1,6 @@
 export default {
-    buttonColor: '#1890ff',
-    textColor: 'blue'
+    Home: {
+        buttonColor: 'blue',
+        textColor: 'blue'
+    }
 }

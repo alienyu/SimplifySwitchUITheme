@@ -7,7 +7,7 @@ import 'antd/dist/antd.css'
 import Index from './index';
 
 ReactDOM.render(
-    <Provider {...stores}>    
+    <Provider { ...stores }>
         <Index />
     </Provider>,
     document.getElementById("app")

@@ -1,4 +1,6 @@
 export default {
-    buttonColor: 'green',
-    textColor: 'green'
+    Home: {
+        buttonColor: 'green',
+        textColor: 'green'
+    }
 }

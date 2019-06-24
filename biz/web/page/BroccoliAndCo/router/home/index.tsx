@@ -1,34 +1,15 @@
 import * as React from 'react'
-import { withRouter } from 'react-router-dom';
 import { WrapperHomeCmp } from './styled'
 import { Row, Col, Modal } from 'antd'
-import {observer, inject} from 'mobx-react/index';
-import * as _ from 'lodash';
 import RequestForm from './requestForm'
 
-type Props = {
-    location: any,
-    customizeThemeStore: any
-}
-@inject('customizeThemeStore')
-@observer
-class Home extends React.Component<Props, { isShowForm: boolean, isShowSuccessModal: boolean }> {
-    constructor(props: any) {
+class Home extends React.Component<{}, { isShowForm: boolean, isShowSuccessModal: boolean }> {
+    constructor(props:any) {
         super(props);
         this.state = {
             isShowForm: false,
             isShowSuccessModal: false
         }
-    }
-    componentDidMount() {
-        const params  =  this.props.location.search.split("?");
-        let formattedParams = params.length >1 ? _.chain(params[1])
-        .split("&")
-        .map(_.ary(_.partial(_.split,_,"="),1))
-        .fromPairs()
-        .value() : {};
-        let defaultTheme:string = _.get(formattedParams, 'pl', 'default');
-        this.props.customizeThemeStore.changeThemeKey(defaultTheme);
     }
 
     showForm() {
@@ -70,7 +51,7 @@ class Home extends React.Component<Props, { isShowForm: boolean, isShowSuccessMo
 
     render() {
         return (
-            <WrapperHomeCmp {...this.props.customizeThemeStore.currentTheme}>
+            <WrapperHomeCmp>
                 <Row type="flex" justify="center" align="middle" className="pageFrame">
                     <Col span={18}>
                         <div className="title">A better way</div>
@@ -115,4 +96,4 @@ class Home extends React.Component<Props, { isShowForm: boolean, isShowSuccessMo
     }
 }
 
-module.exports = withRouter(Home);
+module.exports = Home;
