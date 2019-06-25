@@ -1,7 +1,10 @@
-import styled from 'styled-components'
-import { textColor, buttonColor } from './customizeStyle';
+import styled from 'styled-components';
+declare const getMulThemeProps: any;
+const customizeStyleCmpList: string[] = ['textColor', 'buttonColor'];
+const cmpNS: string = 'Home';
 
-// type Props = any;
+var { textColor, buttonColor } = getMulThemeProps({ customizeStyleCmpList, cmpNS });
+
 var WrapperHomeCmp = styled.div`
     height: 100%;
     .pageFrame {

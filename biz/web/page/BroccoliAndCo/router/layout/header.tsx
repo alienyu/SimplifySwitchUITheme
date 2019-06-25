@@ -4,12 +4,12 @@ import { WrapperHeaderCmp } from './styled'
 import { Button, Row, Col } from 'antd';
 
 type Props = {
-    customizeThemeStore: any
+    customizeThemeStore?: any
 }
 
 @inject("customizeThemeStore")
 @observer
-class Header extends React.Component<Props, {}> {
+export default class Header extends React.Component<Props, {}> {
     constructor(props: Props) {
         super(props);
     }
@@ -19,12 +19,15 @@ class Header extends React.Component<Props, {}> {
         return (
             <WrapperHeaderCmp>
                 <Row type="flex">
-                    <Col span={5}>BROCCOLI & CO.</Col>
-                    <Col span={4}>
+                    <Col span={5}>Change Theme.</Col>
+                    <Col span={3}>
                         <Button type="primary" onClick={() => customizeThemeStore.changeThemeKey("shopify")}>ChangeShopifyTheme</Button>
                     </Col>
-                    <Col span={4}>
+                    <Col span={3}>
                         <Button type="default" onClick={() => customizeThemeStore.changeThemeKey("default")}>ChangeDefaultTheme</Button>
+                    </Col>
+                    <Col span={3}>
+                        <Button type="primary" onClick={() => customizeThemeStore.changeThemeKey("joom")}>ChangeJoomTheme</Button>
                     </Col>
                 </Row>
             </WrapperHeaderCmp>
@@ -32,4 +35,3 @@ class Header extends React.Component<Props, {}> {
     }
 }
 
-module.exports = Header;

@@ -1,7 +1,12 @@
 import styled from 'styled-components'
+declare const getMulThemeProps: any;
+const customizeStyleCmpList: string[] = ['textColor'];
+const cmpNS: string = 'Layout.Header';
+
+var { textColor } = getMulThemeProps({ customizeStyleCmpList, cmpNS });
 
 var WrapperHeaderCmp = styled.div`
-    color: #fff;
+    color: ${textColor};
     font-size: 18px;
 `;
 

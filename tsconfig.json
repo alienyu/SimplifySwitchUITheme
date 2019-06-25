@@ -1,12 +1,15 @@
 {
     "compilerOptions": {
       "outDir": "./dist/",
-      "baseUrl": "",
+      "baseUrl": ".",
       "paths": {
-        "@router/*": ["/biz/web/page/BroccoliAndCo/router/*"],
-        "@mobx/*": ["/biz/web/page/BroccoliAndCo/mobx/*"],
-        "buildConf/*": ["/build/config/*"],
-        "ajax": ["/biz/web/page/BroccoliAndCo/static/module/ajax.ts"]
+        "@router/*": ["biz/web/page/BroccoliAndCo/router/*"],
+        "@mobx/*": ["biz/web/page/BroccoliAndCo/mobx/*"],
+        "buildConf/*": ["build/config/*"],
+        "mulThemeConf": ["biz/web/page/BroccoliAndCo/mulThemeConf/index.ts"],
+        "ajax": ["biz/web/page/BroccoliAndCo/static/module/ajax.ts"],
+        "getMulThemeProps": ["biz/web/page/BroccoliAndCo/static/module/getMulThemeProps.ts"],
+        "Constants": ["biz/web/page/BroccoliAndCo/static/constants/index.ts"]
       },
       "sourceMap": true,
       "noImplicitAny": true,

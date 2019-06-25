@@ -1,13 +1,15 @@
 import * as React from 'react'
 import { HashRouter, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import {observer, inject} from 'mobx-react/index';
+import { observer, inject } from 'mobx-react/index';
 import * as _ from 'lodash';
 import { Layout } from 'antd';
 const { Header, Footer, Content } = Layout;
-var AppHeader = require('@router/layout/header')
-var AppFooter = require('@router/layout/footer')
-var Home = require('@router/home/index')
+import AppHeader from '@router/layout/header';
+import AppFooter from '@router/layout/footer';
+import Home from '@router/home/index';
+
+declare const Constants: any;
 
 type Props = {
     customizeThemeStore?: any,
@@ -31,7 +33,7 @@ class Index extends React.Component<Props, {}> {
     }
     render() {
         return (
-            <ThemeProvider theme={{ pl: this.props.customizeThemeStore.currentThemeKey }}>
+            <ThemeProvider theme={{ [Constants.theme]: this.props.customizeThemeStore.currentThemeKey }}>
                 <Layout>
                     <Header><AppHeader /></Header>
                     <Content style={{ height: 'calc(100vh - 156px)', marginTop: 64 }}>

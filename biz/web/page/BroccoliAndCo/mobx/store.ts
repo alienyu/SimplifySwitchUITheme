@@ -9,4 +9,4 @@ const stores = {
     customizeThemeStore
 }
 
-module.exports = stores;
+export { stores as default,  ajaxLoadingStore };

@@ -3,7 +3,7 @@ import { WrapperHomeCmp } from './styled'
 import { Row, Col, Modal } from 'antd'
 import RequestForm from './requestForm'
 
-class Home extends React.Component<{}, { isShowForm: boolean, isShowSuccessModal: boolean }> {
+export default class Home extends React.Component<{}, { isShowForm: boolean, isShowSuccessModal: boolean }> {
     constructor(props:any) {
         super(props);
         this.state = {
@@ -95,5 +95,3 @@ class Home extends React.Component<{}, { isShowForm: boolean, isShowSuccessModal
         )
     }
 }
-
-module.exports = Home;

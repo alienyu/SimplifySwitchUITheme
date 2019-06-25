@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { observable, action, computed } from 'mobx';
-import themeConf from '../mulThemeConf';
+import themeConf from 'mulThemeConf';
 
 export default class customizeThemeStore {
     @observable currentThemeKey = 'default';
