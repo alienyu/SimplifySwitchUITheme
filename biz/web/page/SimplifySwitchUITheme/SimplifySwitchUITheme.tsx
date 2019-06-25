@@ -1,4 +1,4 @@
-require("./BroccoliAndCo.less");
+require("./SimplifySwitchUITheme.less");
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Provider } from 'mobx-react';
